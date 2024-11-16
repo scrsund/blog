@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply font-semibold text-lg py-2;
+  }
+
+  h3 {
+    @apply font-semibold py-4;
+  }
+}
+
+#blog {
+  @apply leading-relaxed;
+}
+
+.title {
+  @apply capitalize text-3xl py-2 font-semibold;
+}
+
+.heading-2 {
+  @apply mt-20 py-4 mb-2 font-semibold text-xl;
+}
+
+.heading-3{
+  @apply mt-6 mb-2 text-base font-semibold;
+}
+
+.heading-6 {
+  @apply py-4 font-semibold;
+}
+
+.paragraph {
+  @apply py-2;
+}
+
+.list-item {
+  @apply py-2;
+}
+
+#table {
+  @apply capitalize text-xs border scale-[.9];
+}
+
+#table thead {
+  @apply border-b;
+}
+
+#table td {
+  @apply border-l p-3;
+}
+
+/* #blog div {
+  @apply py-1;  
+} */
+
+#footer a {
+  @apply text-sm cursor-pointer block;
+}
+
+#footer h5 {
+  @apply py-2
+}
+
+.logo {
+  @apply font-serif text-yellow-400 lowercase;
+}
+
