@@ -39,7 +39,7 @@ import { RouterLink } from 'vue-router';
               alt="Stockholm Neighborhoods"
               class="py-5"
             />
-            <RenderPost :blogPost="blogPost" :assets="assets"/>
+            <RenderPost :blogPost="blogPost"/> 
           </div>
           <nav class="text-xs">Share</nav>
         </div>

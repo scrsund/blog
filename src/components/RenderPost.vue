@@ -6,7 +6,26 @@
         :key="idx"
         :class="[getClass(textNode), ...getMarks(textNode)]"
       >
+      <!-- HardCoded HyperLink -->
+      <span v-if="!textNode.value">
+        <span v-for="(hyperLink, idx) in textNode.content" :key="idx">
+           <a :href="textNode.data.uri" class="text-purple-800">
+            {{ hyperLink.value }}
+          </a> 
+        </span>
+        <!-- embedded Assets -->
+        <!-- <span v-if="!textNode.value">
+         <span v-for="(embeddedItem, idx) in textNode.content" :key="idx">
+           <span v-for="(item, idx) in embeddItem.content" :key="idx">
+             {{ item.title }}
+           </span>
+         </span>
+        </span> -->
+      </span>
+      <!-- Render Content -->
+      <span v-else>
         {{ textNode.value }}
+      </span>
       </span>
     </div>
     <!-- Unordered List -->
@@ -23,18 +42,20 @@
         </span>
       </li>
     </div>
-    <!-- Embedded Assets -->
+    <!-- Contentful code -->
+     <!-- <div>
+      <div v-html="renderedContent"></div>
+     </div>
      <div v-if="item.nodeType === 'embedded-asset-block'">
       <div v-if="item.data.target.sys.type === 'Link' && item.data.target.sys.linkType === 'Asset'">
         <img :src="getAssetUrl(item.data.target.sys.id)" alt="Embedded Asset"/>
       </div>
      </div>
-     <!-- Inline Assets (embedded) -->
       <div v-if="item.nodeType === 'embedded-entry-inline'">
         <div v-for="(inlineAsset, idx) in item.content" :key="idx">
           <img :src="getAssetUrl(inlineAsset.sys.id)"/>
         </div>
-      </div>
+      </div> -->
     <!-- Table -->
      <section class="flex justify-center items-center">
        <table id="table" v-if="item.nodeType === 'table'">
@@ -77,6 +98,8 @@
 </template>
 
 <script>
+// import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+// import {BLOCKS, INLINES} from '@contentful/rich-text-types'
 
 export default {
   props: {
@@ -84,12 +107,30 @@ export default {
       type: Object,
       required: true,
     },
-    assets: {
-    type: Array,
-    required: true,
-  },
   },
   computed: {
+    // renderedContent() {
+    //   const content = this.blogPost.content;
+
+    //   const renderOptions = {
+    //     renderNode: {
+    //       [INLINES.EMBEDDED_ENTRY]: (node) => {
+    //         // Embedded entry logic
+    //         return `<a href="/blog/${node.data.target.fields.slug}">${node.data.target.fields.title}</a>`;
+    //       },
+    //       [BLOCKS.EMBEDDED_ASSET]: (node) => {
+    //         const assetId = node.data.target.sys.id;
+    //         const asset = this.assets.find((a) => a.sys.id === assetId);
+
+    //         if (!asset) return `<p>Asset not found</p>`;
+    //         const { url, description } = asset.fields.file;
+    //         return `<img src="https:${url}" alt="${description}" style="max-width: 100%;" />`;
+    //       },
+    //     },
+    //   };
+
+    //   return documentToHtmlString(content, renderOptions);
+    // }
     // getTableHeader(){
     //   return (item) => item.content[0].content;
     // },
@@ -98,10 +139,10 @@ export default {
     // },
   },
   methods: {
-    getAssetUrl(assetId){
-      const asset = this.assets.find((asset) => asset.sys.id === assetId);
-      return asset ? asset.fields.file.url : '';
-    },
+    // getAssetUrl(assetId){
+    //   const asset = this.assets.find((asset) => asset.sys.id === assetId);
+    //   return asset ? asset.fields.file.url : '';
+    // },
     getClass(nodeType) {
       switch (nodeType) {
         case "heading-1":
