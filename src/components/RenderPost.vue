@@ -13,14 +13,12 @@
             {{ hyperLink.value }}
           </a> 
         </span>
-        <!-- embedded Assets -->
-        <!-- <span v-if="!textNode.value">
-         <span v-for="(embeddedItem, idx) in textNode.content" :key="idx">
-           <span v-for="(item, idx) in embeddItem.content" :key="idx">
-             {{ item.title }}
-           </span>
-         </span>
-        </span> -->
+      </span>
+      <!-- Embedded Assets -->
+      <span v-if="!textNode.value">
+        <span v-for="(embeddedItem, idx) in textNode.data.target" :key="idx">
+          <a :href="embeddedItem.slug" class="capitalize underline text-blue-500">{{embeddedItem.title}}</a>
+        </span>
       </span>
       <!-- Render Content -->
       <span v-else>
@@ -42,20 +40,6 @@
         </span>
       </li>
     </div>
-    <!-- Contentful code -->
-     <!-- <div>
-      <div v-html="renderedContent"></div>
-     </div>
-     <div v-if="item.nodeType === 'embedded-asset-block'">
-      <div v-if="item.data.target.sys.type === 'Link' && item.data.target.sys.linkType === 'Asset'">
-        <img :src="getAssetUrl(item.data.target.sys.id)" alt="Embedded Asset"/>
-      </div>
-     </div>
-      <div v-if="item.nodeType === 'embedded-entry-inline'">
-        <div v-for="(inlineAsset, idx) in item.content" :key="idx">
-          <img :src="getAssetUrl(inlineAsset.sys.id)"/>
-        </div>
-      </div> -->
     <!-- Table -->
      <section class="flex justify-center items-center">
        <table id="table" v-if="item.nodeType === 'table'">
@@ -70,37 +54,10 @@
          </thead>
        </table>
      </section>
-    <!-- <table v-if="item.nodeType === 'table'" class="border">
-      <thead>
-        <tr>
-          <th v-for="(tableCell, idx) in getTableHeader(item)" :key="idx">
-            <span v-for="(paragraph, idx) in tableCell.content" :key="idx">
-              <span v-for="(textNode, idx) in paragraph.content" :key="idx">
-                {{ textNode.value }}
-              </span>
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(tableRow, idx) in getTableBody(item)" :key="idx">
-          <td v-for="(tableCell, idx) in tableRow.content" :key="idx">
-            <span v-for="(paragraph, idx) in tableCell.content" :key="idx">
-              <span v-for="(textNode, idx) in paragraph.content" :key="idx">
-                {{ textNode.value }}
-              </span>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
   </div>
 </template>
 
 <script>
-// import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-// import {BLOCKS, INLINES} from '@contentful/rich-text-types'
-
 export default {
   props: {
     blogPost: {
@@ -108,41 +65,7 @@ export default {
       required: true,
     },
   },
-  computed: {
-    // renderedContent() {
-    //   const content = this.blogPost.content;
-
-    //   const renderOptions = {
-    //     renderNode: {
-    //       [INLINES.EMBEDDED_ENTRY]: (node) => {
-    //         // Embedded entry logic
-    //         return `<a href="/blog/${node.data.target.fields.slug}">${node.data.target.fields.title}</a>`;
-    //       },
-    //       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-    //         const assetId = node.data.target.sys.id;
-    //         const asset = this.assets.find((a) => a.sys.id === assetId);
-
-    //         if (!asset) return `<p>Asset not found</p>`;
-    //         const { url, description } = asset.fields.file;
-    //         return `<img src="https:${url}" alt="${description}" style="max-width: 100%;" />`;
-    //       },
-    //     },
-    //   };
-
-    //   return documentToHtmlString(content, renderOptions);
-    // }
-    // getTableHeader(){
-    //   return (item) => item.content[0].content;
-    // },
-    // getTableBody(){
-    //   return (item) => item.content.slice(1);
-    // },
-  },
   methods: {
-    // getAssetUrl(assetId){
-    //   const asset = this.assets.find((asset) => asset.sys.id === assetId);
-    //   return asset ? asset.fields.file.url : '';
-    // },
     getClass(nodeType) {
       switch (nodeType) {
         case "heading-1":
