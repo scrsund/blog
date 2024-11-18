@@ -75,33 +75,3 @@ export default {
   },
 };
 </script>
-
-<!-- 
-
-//v-for item in blogPost.content: 
-
-                 <h2 v-if="item.nodeType === 'heading-2'">
-                  <span v-for="(textNode, idx) in item.content" :key="idx">
-                    {{ textNode.value }}
-                  </span>
-                 </h2>
-                 <h3 v-if="item.nodeType === 'heading-3'">
-                  <span v-for="(textNode, idx) in item.content" :key="idx">
-                    {{ textNode.value }}
-                  </span>
-                 </h3>
-                <p v-if="item.nodeType === 'paragraph'" class="py-2">
-                  <span v-for="(textNode, idx) in item.content" :key="idx">
-                    {{ textNode.value }}
-                  </span>
-                </p>
-                <p v-if="item.nodeType === 'heading-6'" class="font-semibold">
-                  <span v-for="(textNode, idx) in item.content" :key="idx">
-                    {{ textNode.value }}
-                  </span>
-                </p>
-                <ul v-if="item.nodeType === 'unordered-list'">
-                  <span v-for="(textNode, idx) in item.content" :key="idx">
-                    <span v-for="(listNode, idx) in "></span>
-                  </span>
-                </ul> -->

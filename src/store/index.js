@@ -1,5 +1,5 @@
 import {createStore} from 'vuex';
-import { getBlogPosts } from '@/services/contentfulAPI';
+import { getBlogPosts } from '@/services/contentful';
 
 const store = createStore({
   state: {

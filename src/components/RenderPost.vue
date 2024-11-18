@@ -1,4 +1,5 @@
 <template>
+  <!-- Render Content -->
   <div v-for="(item, index) in blogPost.content" :key="index">
     <div v-if="item.nodeType" :class="getClass(item.nodeType)">
       <span
@@ -6,25 +7,39 @@
         :key="idx"
         :class="[getClass(textNode), ...getMarks(textNode)]"
       >
-      <!-- HardCoded HyperLink -->
-      <span v-if="!textNode.value">
-        <span v-for="(hyperLink, idx) in textNode.content" :key="idx">
-           <a :href="textNode.data.uri" class="text-purple-800">
-            {{ hyperLink.value }}
-          </a> 
+        <!-- HardCoded HyperLink -->
+        <span v-if="!textNode.value">
+          <span v-for="(hyperLink, idx) in textNode.content" :key="idx">
+            <a :href="textNode.data.uri" class="text-purple-800">
+              {{ hyperLink.value }}
+            </a>
+          </span>
+        </span>
+        <!-- Embedded Assets -->
+        <span v-if="!textNode.value">
+          <span v-for="(item, idx) in textNode.data.target" :key="idx">
+            <a
+              :href="item.slug"
+              class="capitalize underline text-blue-500"
+              >{{ item.title }}</a
+            >
+          </span>
+        </span>
+        <!-- Content -->
+        <span v-else>
+          {{ textNode.value }}
         </span>
       </span>
-      <!-- Embedded Assets -->
-      <span v-if="!textNode.value">
-        <span v-for="(embeddedItem, idx) in textNode.data.target" :key="idx">
-          <a :href="embeddedItem.slug" class="capitalize underline text-blue-500">{{embeddedItem.title}}</a>
-        </span>
-      </span>
-      <!-- Render Content -->
-      <span v-else>
-        {{ textNode.value }}
-      </span>
-      </span>
+    </div>
+    <!-- Embedded Image -->
+    <div v-if="item.nodeType === 'embedded-asset-block'">
+        <img :src="item.data.target.fields.file.url" alt="">
+    </div>
+    <!-- Embedded Entry -->
+    <div v-if="item.nodeType === 'embedded-entry-block'">
+      <!-- Create Entry Styling -->
+      <span>{{item.data.target.fields.title}}</span>
+        <!-- <img :src="item.data.target.fields.featuredImage.fields.file.url" alt=""> -->
     </div>
     <!-- Unordered List -->
     <div v-if="item.nodeType === 'unordered-list'">
@@ -41,19 +56,27 @@
       </li>
     </div>
     <!-- Table -->
-     <section class="flex justify-center items-center">
-       <table id="table" v-if="item.nodeType === 'table'">
-         <thead v-for="(tableRow, idx) in item.content" :key="idx">
-           <td v-for="(tableCell, idx) in tableRow.content" :key="idx" class="p-2">
-             <span v-for="(paragraph, idx) in tableCell.content" :key="idx">
-               <span v-for="(textNode, idx) in paragraph.content" :key="idx" :class="[getClass(textNode), ...getMarks(textNode)]">
-                 {{ textNode.value }}
-               </span>
-             </span>
-           </td>
-         </thead>
-       </table>
-     </section>
+    <section class="flex justify-center items-center">
+      <table id="table" v-if="item.nodeType === 'table'">
+        <thead v-for="(tableRow, idx) in item.content" :key="idx">
+          <td
+            v-for="(tableCell, idx) in tableRow.content"
+            :key="idx"
+            class="p-2"
+          >
+            <span v-for="(paragraph, idx) in tableCell.content" :key="idx">
+              <span
+                v-for="(textNode, idx) in paragraph.content"
+                :key="idx"
+                :class="[getClass(textNode), ...getMarks(textNode)]"
+              >
+                {{ textNode.value }}
+              </span>
+            </span>
+          </td>
+        </thead>
+      </table>
+    </section>
   </div>
 </template>
 
@@ -107,7 +130,7 @@ export default {
       });
     },
   },
-}; 
+};
 </script>
 
 <!-- 

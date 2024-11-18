@@ -1,23 +1,32 @@
-import { createClient } from "contentful";
+import axios from 'axios';
 
-const SPACE_ID = process.env.VUE_APP_CONTENTFUL_SPACE_ID;
-const DELIVERY_TOKEN = process.env.VUE_APP_CONTENTFUL_DELIVERY_TOKEN
+const spaceId = process.env.VUE_APP_CONTENTFUL_SPACE_ID;
+const deliveryToken = process.env.VUE_APP_CONTENTFUL_DELIVERY_TOKEN;
 
-const client = createClient({
-  space: SPACE_ID,
-  accessToken: DELIVERY_TOKEN,
+const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries`
+
+const client = axios.create({
+  baseURL: url,
+  headers: {
+    Authorization: `Bearer ${deliveryToken}`,
+  }
 });
 
 export const getBlogPosts = async () => {
   try {
-    const response = await client.getEntries({
-      content_type: 'blogPost',
+    // console.log("Requesting data from URL:", url);
+
+    const response = await client.get(url, {
+      params: {
+        content_type: 'blogPost',
+        include: 2,
+      }
     });
-    console.log('RESPONSE: ', response)
-    
-    const items = response.items;
-    const assets = response.includes.Asset;
-    const entries = response.includes.Entry;
+    console.log("Raw API Response: ", response.data);
+
+    const items = response.data.items;
+    const assets = response.data.includes.Asset;
+    const entries = response.data.includes.Entry;
 
     console.log("API Response: response.data");
 
@@ -96,9 +105,12 @@ export const getBlogPosts = async () => {
 
     console.log("Processed Blog Data: ", blogs); 
     return blogs;
-
-  } catch (error){
-    console.error('Error fetching data from Contentful: ', error)
-    throw error;
+  } catch (error) {
+    console.error("Error fetching data from Contentful", error);
+    return [];
   }
-}
+};
+
+
+
+export default client;
