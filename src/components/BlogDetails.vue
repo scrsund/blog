@@ -13,10 +13,10 @@ import { RouterLink } from 'vue-router';
 
 <template>
   <main id="blog" class="p-10">
-    <RouterLink to="/blog-list" class="ml-4 text-xs">Back</RouterLink>
-    <section class="grid grid-cols-3">
-      <div class="col-span-1 bg-zinc-200">
-        <!-- container -->
+    <RouterLink to="/blog-list" class="text-xs">Back</RouterLink>
+    <div class="grid grid-cols-3 mx-20 mt-4">
+      <!-- Ads -->
+      <!-- <div class="col-span-1 bg-zinc-200">
         <div class="flex justify-center items-center h-60">
           <div
             class="flex flex-col justify-center items-center bg-sky-100 rounded-lg w-2/3 p-8 text-center"
@@ -25,11 +25,11 @@ import { RouterLink } from 'vue-router';
             <input type="text" placeholder="Email" />
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- Article -->
-      <div class="col-span-2 px-16">
+      <div class="col-span-3 px-16">
         <div class="flex flex-col">
-          <div v-if="blogPost">
+          <section v-if="blogPost">
             <h1 class="title">{{ blogPost.title }}</h1>
             <p class="my-4">
               {{ blogPost.intro }}
@@ -40,11 +40,11 @@ import { RouterLink } from 'vue-router';
               class="py-5"
             />
             <RenderPost :blogPost="blogPost"/> 
-          </div>
+          </section>
           <nav class="text-xs">Share</nav>
         </div>
       </div>
-    </section>
+    </div>
     <div id="ad-banner"></div>
     <footer></footer>
   </main>

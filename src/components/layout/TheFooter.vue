@@ -1,5 +1,5 @@
 <template>
-  <main id="footer" class="flex justify-around bg-sky-700 mt-10 p-10 text-white">
+  <footer id="footer" class="flex justify-around bg-sky-700 mt-10 p-10 text-white">
       <div class="flex space-x-10">
         <div>
           <h5>Company</h5>
@@ -27,5 +27,5 @@
         </div>
       </div>
       <div>Socials</div>
-  </main>
+  </footer>
 </template>

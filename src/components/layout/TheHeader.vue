@@ -1,5 +1,5 @@
 <template>
-  <main class="mb-10">
+  <header class="mb-10">
     <div class="flex flex-col items-center justify-center bg-sky-700 pb-8">
       <RouterLink to="/home" class="text-5xl mt-4 py-4 px-6 logo">tiny traveler</RouterLink>
       <p class="lowercase text-sm text-white">The go-to guide for families moving to sweden</p>
@@ -19,6 +19,6 @@
         </nav>
         <!-- <div class="hidden md:block font-sans text-sm">Subscribe</div> -->
     </div>
-  </main>
+  </header>
 
 </template>
