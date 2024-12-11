@@ -1,65 +1,15 @@
-import { createClient } from "contentful";
-
-const SPACE_ID = process.env.VUE_APP_CONTENTFUL_SPACE_ID;
-const DELIVERY_TOKEN = process.env.VUE_APP_CONTENTFUL_DELIVERY_TOKEN
-
-const client = createClient({
-  space: SPACE_ID,
-  accessToken: DELIVERY_TOKEN,
-});
-
 export const getBlogPosts = async () => {
   try {
-    const response = await client.getEntries({
-      content_type: 'blogPost',
-    });
-    console.log('RESPONSE: ', response)
+    const response = await fetch('/api/contentful');
+    const data = await response.json();
+
+    console.log('DATA: ', data)
     
-    const items = response.items;
-    const assets = response.includes.Asset;
-    const entries = response.includes.Entry;
+    const items = data.items;
+    const assets = data.includes.Asset;
+    const entries = data.includes.Entry;
 
     console.log("API Response: response.data");
-
-    // console.log("ITEMS: ", items)
-
-    // const resolveRichText = (richText) => {
-    //   if(!richText) return null;
-  
-    //   return richText.content.map((block) => {
-    //     if(block.nodeType === 'paragraph'){
-    //       return {
-    //         type: 'paragraph',
-    //         text: block.content.map((content) => content.value).join(' '),
-    //       };
-    //     }
-  
-    //     if (block.nodeType === 'embedded-asset-block'){
-    //       const assetId = block.data.target.sys.id;
-    //       const asset = assets.find((a) => a.sys.id === assetId);
-    //       return asset
-    //       ? {
-    //         type: 'image',
-    //         url: asset.fields.file.url,
-    //         title: asset.fields.title,
-    //       }
-    //       : null;
-    //     }
-  
-    //     if (block.nodeType === 'embedded-entry-inline'){
-    //       const entryId = block.data.target.sys.id;
-    //       const entry = entries.find((e) => e.sys.id === entryId);
-    //       return entry
-    //       ? {
-    //         type: 'inline-entry',
-    //         title: entry.fields.title || 'Embedded Entry',
-    //       }
-    //       : null;
-    //     }
-  
-    //     return null;
-    //   })
-    // }
 
     const blogs = items.map(item => {
       const { fields } = item;
