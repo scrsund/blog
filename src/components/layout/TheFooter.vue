@@ -26,6 +26,13 @@
           <a>Resource Center</a>
         </div>
       </div>
-      <div>Socials</div>
+      <div>
+        <h5>Socials</h5>
+        <div class="space-x-2 cursor-pointer">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+      </div>
   </footer>
 </template>
