@@ -1,34 +1,19 @@
 {
   "version": 2,
+  "functions": {
+    "api/*.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "routes": [
     {
-      "src": "/api/contentful",
-      "dest": "/api/contentful.js"
-    },
-    {
-      "src": "^/js/(.*)",
-      "dest": "/js/$1"
-    },
-    {
-      "src": "^/css/(.*)",
-      "dest": "/css/$1"
-    },
-    {
-      "src": "^/img/(.*)",
-      "dest": "/img/$1"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
       "dest": "/index.html"
-    }
-  ],
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
     }
   ]
 }
