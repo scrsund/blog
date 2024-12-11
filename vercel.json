@@ -13,24 +13,11 @@
       "dest": "/api/$1"
     },
     {
-      "src": "/js/(.*)",
-      "dest": "/dist/js/$1"
-    },
-    {
-      "src": "/css/(.*)",
-      "dest": "/dist/css/$1"
-    },
-    {
-      "src": "/img/(.*)",
-      "dest": "/dist/img/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/dist/favicon.ico"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/index.html"
+      "dest": "/index.html"
     }
   ]
 }
