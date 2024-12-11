@@ -1,7 +1,20 @@
 export const getBlogPosts = async () => {
   try {
-    const response = await fetch('/api/contentful');
+    const baseUrl = process.env.NODE_ENV === 'production' ? 'blog-eight-delta-18.vercel.app' : '';
+
+    const response = await fetch(`${baseUrl}/api/contentful`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('API Error:', response.status, errorText);
+      return [];
+    }
+
     const data = await response.json();
+
+    if (!data || !data.items) {
+      console.error('Invalid response format:', data);
+      return [];
+    }
 
     console.log('DATA: ', data)
     
