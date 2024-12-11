@@ -14,7 +14,7 @@
         <h5 class="text-center text-xs uppercase">
           {{ blog.category }}
         </h5>
-        <div class="flex p-4">
+        <div class="flex p-4"> 
           <img
             :src="'https:' + blog.image"
             alt=""
