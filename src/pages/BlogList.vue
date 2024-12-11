@@ -8,7 +8,7 @@
 -->
 
 <template>
-  <div class="flex justify-center w-full">
+  <div class="flex justify-center w-full mb-10">
     <div class="w-1/2 space-y-4">
       <div v-for="blog in sortedBlogs" :key="blog.id" class="flex flex-col border p-4">
         <h5 class="text-center text-xs uppercase">

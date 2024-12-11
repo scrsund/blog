@@ -1,6 +1,7 @@
 export const getBlogPosts = async () => {
   try {
-    const baseUrl = process.env.NODE_ENV === 'production' ? 'blog-eight-delta-18.vercel.app' : '';
+    const baseUrl = window.location.origin;
+    console.log('Fetching from: ', `${baseUrl}/api/contentful`)
 
     const response = await fetch(`${baseUrl}/api/contentful`);
     if (!response.ok) {
