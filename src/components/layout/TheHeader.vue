@@ -5,7 +5,7 @@
       <p class="lowercase text-sm text-white">The go-to guide for families moving to sweden</p>
     </div>
     <div class="flex justify-center h-16 py-6 px-6 border-b shadow-sm">
-        <nav class="hidden md:block md:list-none md:flex md:space-x-8 md:text-xs cursor-pointer">
+        <nav class="hidden md:list-none md:flex md:space-x-8 md:text-xs cursor-pointer">
           <li>Guides</li>
           <li>Life in Sweden</li>
           <li>Reviews and Recos</li>
