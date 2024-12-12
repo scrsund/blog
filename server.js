@@ -24,7 +24,8 @@ app.get('/api/contentful', async (req, res) => {
      });
     res.json(entries);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch content' });
+    console.error('Contentful API error ', error)
+    res.status(500).json({ error: 'Failed to fetch content', message: error.message });
   }
 });
 
