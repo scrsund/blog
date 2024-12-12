@@ -1,6 +1,6 @@
 <template>
   <section class="max-w-6xl mx-auto mb-16">
-    <h2 class="text-xl font-sans text-center mb-8">Featured</h2>
+    <h2 class="text-xl font-sans text-center mb-8">Featured Blogs</h2>
     <div class="border grid grid-cols-1 md:grid-cols-3 gap-8 px-8 p-8 mx-4">
       <div v-for="blog in featuredBlogs" :key="blog.id" class="flex flex-col">
         <img 

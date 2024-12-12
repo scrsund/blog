@@ -1,13 +1,20 @@
-export const getBlogPosts = async () => {
+export const getBlogPosts = async (includeDrafts = false) => {
   try {
     const baseUrl = window.location.origin;
-    console.log('Fetching from: ', `${baseUrl}/api/contentful`)
+    const endpoint = includeDrafts ? '/api/contentful/drafts' : '/api/contentful'
+    console.log('Fetching from: ', `${baseUrl}${endpoint}`)
 
-    const response = await fetch(`${baseUrl}/api/contentful`);
+    const response = await fetch(`${baseUrl}${endpoint}`);
+
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")){
+      throw new Error(`Expected JSON response but got ${contentType}`);
+    }    
+
     if (!response.ok) {
       const errorText = await response.text();
       console.error('API Error:', response.status, errorText);
-      return [];
+      throw new Error(`API error: ${response.status}`)
     }
 
     const data = await response.json();
