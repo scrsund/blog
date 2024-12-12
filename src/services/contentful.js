@@ -1,10 +1,21 @@
 export const getBlogPosts = async (includeDrafts = false) => {
   try {
     const baseUrl = window.location.origin;
-    const endpoint = includeDrafts ? '/api/contentful/drafts' : '/api/contentful'
-    console.log('Fetching from: ', `${baseUrl}${endpoint}`)
+    // const endpoint = includeDrafts ? '/api/contentful/drafts' : '/api/contentful'
+    // console.log('Fetching from: ', `${baseUrl}${endpoint}`)
 
-    const response = await fetch(`${baseUrl}${endpoint}`);
+    // const response = await fetch(`${baseUrl}${endpoint}`);
+
+    const response = await fetch('/api/contentful', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+
+    console.log('Response headers:', [...response.headers.entries()]);
+    console.log('Response status:', response.status)
 
     const contentType = response.headers.get("content-type");
     if (!contentType || !contentType.includes("application/json")){

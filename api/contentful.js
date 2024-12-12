@@ -1,6 +1,12 @@
 const contentful = require('contentful');
 
 module.exports = async (req, res) => {
+
+  console.log('API endpoint hit:', req.url);
+  console.log('Request headers:', req.headers);
+
+  res.setHeader('Content-Type', 'application/json')
+
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -10,7 +16,6 @@ module.exports = async (req, res) => {
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
-  res.setHeader('Content-Type', 'application/json')
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
