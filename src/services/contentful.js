@@ -1,35 +1,23 @@
-// import { createClient } from "contentful";
-
-// const client = createClient({
-//   space: process.env.VUE_APP_CONTENTFUL_SPACE_ID,
-//   accessToken: process.env.VUE_APP_CONTENTFUL_DELIVERY_TOKEN
-// })
-
-
 export const getBlogPosts = async (includeDrafts = false) => {
   try {
-    // const response = await client.getEntries({
-    //   content_type: 'blogPost',
-    //   include: 10
-    // })
     const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : `https://expat-blog.vercel.app`;
 
     const endpoint = includeDrafts ? '/api/contentful/drafts' : '/api/contentful'
+    
     console.log('Fetching from: ', `${baseUrl}${endpoint}`)
 
     const response = await fetch(`${baseUrl}${endpoint}`);
 
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")){
+      throw new Error(`Expected JSON response but got ${contentType}`);
+    }    
 
-    // const contentType = response.headers.get("content-type");
-    // if (!contentType || !contentType.includes("application/json")){
-    //   throw new Error(`Expected JSON response but got ${contentType}`);
-    // }    
-
-    // if (!response.ok) {
-    //   const errorText = await response.text();
-    //   console.error('API Error:', response.status, errorText);
-    //   throw new Error(`API error: ${response.status}`)
-    // }
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('API Error:', response.status, errorText);
+      throw new Error(`API error: ${response.status}`)
+    }
 
     const data = await response.json();
 
