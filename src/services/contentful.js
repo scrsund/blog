@@ -12,7 +12,7 @@ export const getBlogPosts = async (includeDrafts = false) => {
     //   content_type: 'blogPost',
     //   include: 10
     // })
-    const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : `https://blog-eight-delta-18.vercel.app`;
+    const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : `https://${process.env.VERCEL_URL}`;
 
     const endpoint = includeDrafts ? '/api/contentful/drafts' : '/api/contentful'
     console.log('Fetching from: ', `${baseUrl}${endpoint}`)
