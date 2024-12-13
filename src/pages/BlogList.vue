@@ -11,7 +11,7 @@
   <div>
     <RouterLink to="/home" class="text-xs p-6">Back</RouterLink>
     <div class="flex justify-center w-full mb-10">
-      <div class="w-1/2 space-y-4">
+      <div class="mx-4 space-y-4 md:mx-0 md:w-1/2">
         <div v-for="blog in sortedBlogs" :key="blog.id" class="flex flex-col border p-4 mt-8">
           <h5 class="text-center text-xs uppercase">
             {{ blog.category }}

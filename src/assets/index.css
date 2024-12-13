@@ -48,7 +48,7 @@
 }
 
 #table {
-  @apply capitalize text-xs border scale-[.55] md:scale-[.7] lg:scale-[1];
+  @apply capitalize text-xs border scale-[.4] sm:scale-[.55] md:scale-[.7] lg:scale-[1];
 }
 
 #table thead {
@@ -59,18 +59,23 @@
   @apply border-l p-3;
 }
 
-/* #blog div {
-  @apply py-1;  
-} */
 
 #footer a {
-  @apply text-sm cursor-pointer block;
+  @apply text-sm cursor-pointer block mb-2;
 }
 
 #footer h5 {
-  @apply py-2
+  @apply py-2 font-semibold mt-4
+}
+
+#footer i {
+  @apply mb-6
 }
 
 .logo {
   @apply font-serif text-yellow-400 lowercase;
+}
+
+html, body {
+  @apply w-full m-0 p-0 overflow-x-hidden
 }
