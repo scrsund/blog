@@ -1,4 +1,4 @@
-// const contentful = require('contentful');
+const contentful = require('contentful');
 // const express = require('express');
 // const router = express.Router();
 
