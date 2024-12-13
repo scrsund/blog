@@ -12,6 +12,13 @@
   }
 }
 
+@layer utilities {
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+
 #blog {
   @apply leading-relaxed;
 }
@@ -67,4 +74,3 @@
 .logo {
   @apply font-serif text-yellow-400 lowercase;
 }
-
