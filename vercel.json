@@ -13,11 +13,12 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1",
-      "headers": {
-        "Content-Type": "application/json"
-      }
+      "src": "/api/contentful",
+      "dest": "/api/contentful.js"
+    },
+    {
+      "src": "/api/contentful/drafts",
+      "dest": "/api/contentful-drafts.js"
     },
     {
       "handle": "filesystem"
