@@ -41,7 +41,7 @@
 }
 
 #table {
-  @apply capitalize text-xs border scale-[1];
+  @apply capitalize text-xs border scale-[.55] md:scale-[.7] lg:scale-[1];
 }
 
 #table thead {

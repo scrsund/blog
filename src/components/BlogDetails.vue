@@ -14,7 +14,7 @@ import { RouterLink } from 'vue-router';
 <template>
   <main id="blog" class="p-10">
     <RouterLink to="/blog-list" class="text-xs">Back</RouterLink>
-    <div class="grid grid-cols-3 mx-20 mt-4">
+    <div class="grid grid-cols-3 sm:mx-4 md:mx-10 lg:mx-20 mt-4">
       <!-- Ads -->
       <!-- <div class="col-span-1 bg-zinc-200">
         <div class="flex justify-center items-center h-60">
@@ -27,7 +27,7 @@ import { RouterLink } from 'vue-router';
         </div>
       </div> -->
       <!-- Article -->
-      <div class="col-span-3 px-16">
+      <div class="col-span-3 sm:px-4 md:px-10 lg:px-16">
         <div class="flex flex-col">
           <section v-if="blogPost">
             <h1 class="title">{{ blogPost.title }}</h1>

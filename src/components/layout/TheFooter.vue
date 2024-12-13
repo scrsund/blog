@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" class="flex justify-around bg-sky-700 mt-auto p-10 text-white">
+  <footer id="footer" class="flex flex-col justify-around bg-sky-700 mt-auto p-10 text-white md:flex-row">
       <div class="flex space-x-10">
         <div>
           <h5>Company</h5>
@@ -26,7 +26,7 @@
           <a>Resource Center</a>
         </div>
       </div>
-      <div>
+      <div class="mt-6 md:mt-0">
         <h5>Socials</h5>
         <div class="space-x-2 cursor-pointer">
           <i class="fa-brands fa-facebook"></i>
