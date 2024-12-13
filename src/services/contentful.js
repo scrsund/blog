@@ -1,9 +1,9 @@
-export const getBlogPosts = async (includeDrafts = false) => {
+export const getBlogPosts = async (blogName =null, includeDrafts = false) => {
   try {
     const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : `https://expat-blog.vercel.app`;
 
     const endpoint = includeDrafts ? '/api/contentful/drafts' : '/api/contentful'
-    
+
     console.log('Fetching from: ', `${baseUrl}${endpoint}`)
 
     const response = await fetch(`${baseUrl}${endpoint}`);
@@ -36,6 +36,10 @@ export const getBlogPosts = async (includeDrafts = false) => {
 
     const blogs = items.map(item => {
       const { fields } = item;
+
+      //blog info
+      const blogInfo = fields.blogId ? fields.blogId.fields : null;
+      const blogName = blogInfo ? blogInfo.name : 'Unknown Blog';
       
       const featuredImage = fields.featuredImage ? assets.find(asset => asset.sys.id === fields.featuredImage.sys.id) : null;
 
@@ -64,11 +68,18 @@ export const getBlogPosts = async (includeDrafts = false) => {
         content: fields.content.content,
         intro: fields.intro,
         heroSection: fields.heroSection,
+        blog: blogName,
       };
     });
 
-    console.log("Processed Blog Data: ", blogs); 
-    return blogs;
+    //filter blogs
+    const filteredBlogs = blogName ? blogs.filter(blog => blog.blog === blogName) : blogs;
+
+    console.log("Processed Blog Data: ", filteredBlogs); 
+    return filteredBlogs;
+
+    // console.log("Processed Blog Data: ", blogs); 
+    // return blogs;
 
   } catch (error){
     console.error('Error fetching data from Contentful: ', error)

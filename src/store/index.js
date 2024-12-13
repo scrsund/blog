@@ -17,7 +17,7 @@ const store = createStore({
   actions: {
     async fetchBlogs({ commit }){
       commit('setLoading', true);
-      const blogs = await getBlogPosts();
+      const blogs = await getBlogPosts('Tiny Traveler');
       commit('setBlogs', blogs);
       commit('setLoading', false);
     },
