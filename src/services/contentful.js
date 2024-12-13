@@ -69,6 +69,7 @@ export const getBlogPosts = async (blogName =null, includeDrafts = false) => {
         intro: fields.intro,
         heroSection: fields.heroSection,
         blog: blogName,
+        featured: fields.featuredPost || false,
       };
     });
 

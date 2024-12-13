@@ -37,7 +37,8 @@ export default {
     const store = useStore();
     
     const featuredBlogs = computed(() => {
-      return store.getters.sortedBlogs.slice(0, 3);
+      // return store.getters.sortedBlogs.slice(0, 3);
+      return store.getters.featuredBlogs;
     });
 
     return {

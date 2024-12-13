@@ -26,6 +26,9 @@ const store = createStore({
     sortedBlogs(state){
       return state.blogs.slice().sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
     },
+    featuredBlogs(state){
+      return state.blogs.filter(blog => blog.featured).sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+    }
   },
 });
 
