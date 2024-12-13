@@ -12,7 +12,8 @@ export const getBlogPosts = async (includeDrafts = false) => {
     //   content_type: 'blogPost',
     //   include: 10
     // })
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '';
+    
     const endpoint = includeDrafts ? '/api/contentful/drafts' : '/api/contentful'
     console.log('Fetching from: ', `${baseUrl}${endpoint}`)
 

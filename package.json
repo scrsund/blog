@@ -2,11 +2,14 @@
   "name": "vue-tailwind-template",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "vercel-build": "vue-cli-service build",
+    "vercel-build": "vue-cli-service build"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^17.0.0",
